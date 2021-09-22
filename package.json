@@ -1,0 +1,27 @@
+{
+  "name": "dswjs-lib",
+  "version": "1.0.0",
+  "description": "A javascript DSW library for node.js and browsers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decenomy/dswjs-lib.git"
+  },
+  "keywords": [
+    "DECENOMY",
+    "NodeJS",
+    "DSW"
+  ],
+  "author": "The DECENOMY Core Developers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/decenomy/dswjs-lib/issues"
+  },
+  "homepage": "https://github.com/decenomy/dswjs-lib#readme",
+  "dependencies": {
+    "bitcoinjs-lib": "^5.2.0"
+  }
+}
