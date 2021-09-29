@@ -1,4 +1,4 @@
-import bitcoinjs from 'bitcoinjs-lib';
+import './bitcoinjs.min.js';
 
 /**
  * Abstract Class DSW.

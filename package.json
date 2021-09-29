@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "bitcoinjs": "node_modules/.bin/browserify -r bitcoinjs-lib -s bitcoinjs | node_modules/.bin/uglifyjs > bitcoinjs.min.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,9 @@
     "url": "https://github.com/decenomy/dswjs-lib/issues"
   },
   "homepage": "https://github.com/decenomy/dswjs-lib#readme",
-  "dependencies": {
-    "bitcoinjs-lib": "^5.2.0"
+  "devDependencies": {
+    "bitcoinjs-lib": "^5.2.0",
+    "browserify": "^17.0.0",
+    "uglify-js": "^3.14.2"
   }
 }
