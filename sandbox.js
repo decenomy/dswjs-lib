@@ -1,4 +1,4 @@
-// import bitcoinjs from 'bitcoinjs-lib';
+import bitcoinjs from 'bitcoinjs-lib';
 import { Sapphire, Jackpot } from './index.js'
 
 // let network = {
@@ -31,13 +31,13 @@ import { Sapphire, Jackpot } from './index.js'
 
 // console.log(bitcoinjs.address.fromBase58Check('SPEvfQMtAtdNFfJT79GfauzodjK5N5eH1r'));
 
-const sapphire = new Sapphire();
+const sapphire = new Sapphire(bitcoinjs);
 
 console.log(sapphire.checkAddress('SPEvfQMtAtdNFfJT79GfauzodjK5N5eH1r')); // good address
 console.log(sapphire.checkAddress('SPEvfQMtAtdNFdJT79GfauzodjK5N5eH1r')); // bad address
 console.log(sapphire.checkAddress('bMcbjoJRwrim4bmEByXkpMD1VWmQMKtHPe')); // address from other chain
 
-const jackpot = new Jackpot();
+const jackpot = new Jackpot(bitcoinjs);
 
 console.log(jackpot.checkAddress('75gbzE5cjtCcEHREeNJh2oFHq9X77Kbkee')); // good address
 console.log(jackpot.checkAddress('75gbzE5cjtCcEHrEeNJh2oFHq9X77Kbkee')); // bad address

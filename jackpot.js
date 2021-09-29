@@ -6,10 +6,10 @@ import { DSW } from './dsw.js'
  * @class Jackpot
  * @extends {DSW}
  */
- export class Jackpot extends DSW {
+export class Jackpot extends DSW {
 
-    constructor() {
-        super({
+    constructor(bitcoinjs) {
+        super(bitcoinjs, {
             messagePrefix: '\x18DarkNet Signed Message:\n',
             bech32: 'bc', // we don't have it, however leave it like in Bitcoin
             bip32: {
