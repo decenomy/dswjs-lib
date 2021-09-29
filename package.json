@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "test",
     "bitcoinjs": "node_modules/.bin/browserify -r bitcoinjs-lib -s bitcoinjs | node_modules/.bin/uglifyjs > bitcoinjs.min.js"
   },
   "repository": {
