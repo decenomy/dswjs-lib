@@ -1,4 +1,9 @@
-import * as bitcoinjs from './bitcoinjs.min.js';
+import './bitcoinjs.min.js';
+import * as bitcoinjsNotInNode from './bitcoinjs.min.js';
+
+if(!bitcoinjs) {
+    bitcoinjs = bitcoinjsNotInNode;
+}
 
 /**
  * Abstract Class DSW.
