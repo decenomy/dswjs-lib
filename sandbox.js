@@ -1,4 +1,5 @@
 import bitcoinjs from 'bitcoinjs-lib';
+import bip39 from 'bip39';
 import { Sapphire, Jackpot } from './index.js'
 
 // let network = {
@@ -31,14 +32,16 @@ import { Sapphire, Jackpot } from './index.js'
 
 // console.log(bitcoinjs.address.fromBase58Check('SPEvfQMtAtdNFfJT79GfauzodjK5N5eH1r'));
 
-const sapphire = new Sapphire(bitcoinjs);
+const sapphire = new Sapphire(bitcoinjs, bip39);
 
 console.log(sapphire.checkAddress('SPEvfQMtAtdNFfJT79GfauzodjK5N5eH1r')); // good address
 console.log(sapphire.checkAddress('SPEvfQMtAtdNFdJT79GfauzodjK5N5eH1r')); // bad address
 console.log(sapphire.checkAddress('bMcbjoJRwrim4bmEByXkpMD1VWmQMKtHPe')); // address from other chain
 
-const jackpot = new Jackpot(bitcoinjs);
+const jackpot = new Jackpot(bitcoinjs, bip39);
 
 console.log(jackpot.checkAddress('75gbzE5cjtCcEHREeNJh2oFHq9X77Kbkee')); // good address
 console.log(jackpot.checkAddress('75gbzE5cjtCcEHrEeNJh2oFHq9X77Kbkee')); // bad address
 console.log(jackpot.checkAddress('bMcbjoJRwrim4bmEByXkpMD1VWmQMKtHPe')); // address from other chain
+
+console.log(await sapphire.createNewWallet());

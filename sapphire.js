@@ -8,8 +8,8 @@ import { DSW } from './dsw.js'
  */
 export class Sapphire extends DSW {
 
-    constructor(bitcoinjs) {
-        super(bitcoinjs, {
+    constructor(bitcoinjs, bip39) {
+        super(bitcoinjs, bip39, {
             messagePrefix: '\x18DarkNet Signed Message:\n',
             bech32: 'bc', // we don't have it, however leave it like in Bitcoin
             bip32: {
@@ -20,6 +20,7 @@ export class Sapphire extends DSW {
             scriptHash: 0x12, // std::vector<unsigned char>(1, 18)
             wif: 0x19, // std::vector<unsigned char>(1, 25)
         });
+        this._coinType = 832;
     }
 
 }

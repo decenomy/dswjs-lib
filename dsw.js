@@ -5,12 +5,24 @@
  */
  export class DSW {
 
-    constructor(bitcoinjs, network) {
+    constructor(bitcoinjs, bip39, network) {
         if (this.constructor == DSW) {
             throw new Error("Abstract classes can't be instantiated.");
         }
         this._network = network;
         this._bitcoinjs = bitcoinjs;
+        this._bip39 = bip39;
+        this._coinType = 0;
+    }
+
+    async createNewWallet() {
+        let mnemonic = this._bip39.generateMnemonic(256); // 24 words
+        let seed = await this._bip39.mnemonicToSeed(mnemonic);
+        return { mnemonic, seed };
+    }
+
+    recoverWallet(mnemonic) {
+
     }
 
     checkAddress(address) {
