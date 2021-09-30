@@ -8,6 +8,10 @@ import { DSW } from './dsw.js'
  */
 export class Sapphire extends DSW {
 
+    get COIN_TYPE() {
+        return 0x340;
+    } 
+
     constructor(bitcoinjs, bip39) {
         super(bitcoinjs, bip39, {
             messagePrefix: '\x18DarkNet Signed Message:\n',
@@ -20,7 +24,6 @@ export class Sapphire extends DSW {
             scriptHash: 0x12, // std::vector<unsigned char>(1, 18)
             wif: 0x19, // std::vector<unsigned char>(1, 25)
         });
-        this._coinType = 832;
     }
 
 }

@@ -8,6 +8,10 @@ import { DSW } from './dsw.js'
  */
 export class Jackpot extends DSW {
 
+    get COIN_TYPE() {
+        return 0x341;
+    } 
+
     constructor(bitcoinjs, bip39) {
         super(bitcoinjs, bip39, {
             messagePrefix: '\x18DarkNet Signed Message:\n',
@@ -20,6 +24,5 @@ export class Jackpot extends DSW {
             scriptHash: 0x10, // std::vector<unsigned char>(1, 16)
             wif: 0x2B, // std::vector<unsigned char>(1, 43)
         });
-        this._coinType = 832;
     }
 }
