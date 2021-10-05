@@ -1,6 +1,6 @@
 import bitcoinjs from 'bitcoinjs-lib';
 import bip39 from 'bip39';
-import { Bitcoin, Sapphire, Jackpot } from './index.js'
+import { Bitcoin, BitcoinTestnet, Sapphire, Jackpot, Kyanite } from './index.js'
 
 
 /* =================================== Check Address ======================================= */
@@ -37,8 +37,8 @@ console.log(sapphire.checkAddress(address));
 
 /* =================================== Derivation ======================================= */
 
-const masterPrivKey = "TDt9EWvD5T5T44hAZz5vzwQh4zrANciH1JtpxfEmD6YG87ByJ9y2DVxgjzvuguo6C8cmb1kCZtHgzVzofpF966ZpYQPvXfSoswBcr8n4BpeS7Yj";
-const masterPubKey = "ToEGyTbQh9Zvm9796xAFJuqijJuAe1LuNxcoSpJWtG5TVjaQM5qfLrd11GJx9uWzpFtx5ecPxSt934uAwspHTJ32sadQprkCY9P6q3tBpnRQVMf";
+let masterPrivKey = "TDt9EWvD5T5T44hAZz5vzwQh4zrANciH1JtpxfEmD6YG87ByJ9y2DVxgjzvuguo6C8cmb1kCZtHgzVzofpF966ZpYQPvXfSoswBcr8n4BpeS7Yj";
+let masterPubKey = "ToEGyTbQh9Zvm9796xAFJuqijJuAe1LuNxcoSpJWtG5TVjaQM5qfLrd11GJx9uWzpFtx5ecPxSt934uAwspHTJ32sadQprkCY9P6q3tBpnRQVMf";
 
 // m/44'/832'/0'/0'/0' Receiving address on core wallet
 ({ path, address } = sapphire.derive(masterPrivKey, 0, Sapphire.ChangeType.EXTERNAL, 0, false)); // SWuzQunVE1YVsw27mVhYo5LcoVo8SZtm17
@@ -93,3 +93,28 @@ console.log(path);
 console.log(address);
 
 console.log(sapphire.checkAddress(address));
+
+const kyanite = new Kyanite(bitcoinjs, bip39);
+
+masterPrivKey = "xprv9s21ZrQH143K3QemfPR8jiFhkLZ7uTJ2bvjgot2rXD3FDeHoGDTkZws5iUFQXfhapS5epUALv4wxTUeY3Lq9uT9qhJ4QbXLKCLRAWx83NWY";
+masterPubKey = "xpub6EBcL2QgkVkqhcYemCGYxNRZgmAFX7wEmwkfCKxJoKCyWZjTamM7nekwXbQyTgbduVeQzWxAwV75hLVURQSjqP1ZQY6uARQS3ubSBWuW9q1";
+
+account = kyanite.getWalletAccountXPub(masterPrivKey, 0);
+
+console.log(account);
+
+// m/44'/834'/0'/0/0 Receiving address on mobile wallet for account 0 on Kyanite and index 0
+({ path, address } = kyanite.deriveFromAccount(account.xpub, Kyanite.ChangeType.EXTERNAL, 0)); 
+
+console.log(path);
+console.log(address);
+
+console.log(sapphire.checkAddress(address));
+
+// m/44'/834'/0'/1/0 Change address on mobile wallet for account 0 on Kyanite and index 0
+({ path, address } = kyanite.deriveFromAccount(account.xpub, Kyanite.ChangeType.INTERNAL, 0));
+
+console.log(path);
+console.log(address);
+
+console.log(kyanite.checkAddress(address));
