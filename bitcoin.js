@@ -17,3 +17,21 @@ export class Bitcoin extends DSW {
     }
 
 }
+
+/**
+ * Bitcoin.
+ *
+ * @class Bitcoin Testnet
+ * @extends {DSW}
+ */
+ export class BitcoinTestnet extends DSW {
+
+    get COIN_TYPE() {
+        return 0x1;
+    } 
+
+    constructor(bitcoinjs, bip39) {
+        super(bitcoinjs, bip39, bitcoin.networks.testnet);
+    }
+
+}
