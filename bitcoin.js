@@ -19,9 +19,9 @@ export class Bitcoin extends DSW {
 }
 
 /**
- * Bitcoin.
+ * Bitcoin Testnet.
  *
- * @class Bitcoin Testnet
+ * @class BitcoinTestnet
  * @extends {DSW}
  */
  export class BitcoinTestnet extends DSW {
