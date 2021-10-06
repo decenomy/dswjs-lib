@@ -1,6 +1,6 @@
 import bitcoinjs from 'bitcoinjs-lib';
 import bip39 from 'bip39';
-import { Bitcoin, BitcoinTestnet, Sapphire, Jackpot, Kyanite } from './index.js'
+import { Bitcoin, BitcoinTestnet, Sapphire, Jackpot, Kyanite, ChangeType } from './src/index.js'
 
 
 /* =================================== Check Address ======================================= */
@@ -21,14 +21,14 @@ let wallet = await sapphire.createNewWallet();
 console.log(wallet);
 console.log(await sapphire.recoverWallet(wallet.mnemonic));
 
-let { path, address } = sapphire.derive(wallet.xprv, 0, Sapphire.ChangeType.EXTERNAL, 0);
+let { path, address } = sapphire.derive(wallet.xprv, 0, ChangeType.EXTERNAL, 0);
 
 console.log(path);
 console.log(address);
 
 console.log(sapphire.checkAddress(address));
 
-({ path, address } = sapphire.derive(wallet.xprv, 0, Sapphire.ChangeType.INTERNAL, 0));
+({ path, address } = sapphire.derive(wallet.xprv, 0, ChangeType.INTERNAL, 0));
 
 console.log(path);
 console.log(address);
@@ -41,7 +41,7 @@ let masterPrivKey = "TDt9EWvD5T5T44hAZz5vzwQh4zrANciH1JtpxfEmD6YG87ByJ9y2DVxgjzv
 let masterPubKey = "ToEGyTbQh9Zvm9796xAFJuqijJuAe1LuNxcoSpJWtG5TVjaQM5qfLrd11GJx9uWzpFtx5ecPxSt934uAwspHTJ32sadQprkCY9P6q3tBpnRQVMf";
 
 // m/44'/832'/0'/0'/0' Receiving address on core wallet
-({ path, address } = sapphire.derive(masterPrivKey, 0, Sapphire.ChangeType.EXTERNAL, 0, false)); // SWuzQunVE1YVsw27mVhYo5LcoVo8SZtm17
+({ path, address } = sapphire.derive(masterPrivKey, 0, ChangeType.EXTERNAL, 0, false)); // SWuzQunVE1YVsw27mVhYo5LcoVo8SZtm17
 
 console.log(path);
 console.log(address);
@@ -49,7 +49,7 @@ console.log(address);
 console.log(sapphire.checkAddress(address));
 
 // m/44'/832'/0'/1'/0' Change address on core wallet
-({ path, address } = sapphire.derive(masterPrivKey, 0, Sapphire.ChangeType.INTERNAL, 0, false)); // SeTreBBhB6nBuLSpyHppo4gA57UDBWAUyV
+({ path, address } = sapphire.derive(masterPrivKey, 0, ChangeType.INTERNAL, 0, false)); // SeTreBBhB6nBuLSpyHppo4gA57UDBWAUyV
 
 console.log(path);
 console.log(address);
@@ -65,7 +65,7 @@ console.log(address);
 console.log(sapphire.checkAddress(address));
 
 // m/44'/832'/0'/3/73
-({ path, address } = sapphire.derive(masterPrivKey, 0, Sapphire.ChangeType.ECOMMERCE, 73)); // ScwsYWDnJVvj4REzRSamFoEvABeEKpqYTr
+({ path, address } = sapphire.derive(masterPrivKey, 0, ChangeType.ECOMMERCE, 73)); // ScwsYWDnJVvj4REzRSamFoEvABeEKpqYTr
 
 console.log(path);
 console.log(address);
@@ -79,7 +79,7 @@ let account = sapphire.getWalletAccountXPub(masterPrivKey, 0);
 console.log(account);
 
 // m/44'/832'/0'/0/0 Receiving address on mobile wallet for account 0 on Sapphire and index 0
-({ path, address } = sapphire.deriveFromAccount(account.xpub, Sapphire.ChangeType.EXTERNAL, 0)); // SecZRT28YUoMyvXbFzvVbS3CFcnM9rGDx5
+({ path, address } = sapphire.deriveFromAccount(account.xpub, ChangeType.EXTERNAL, 0)); // SecZRT28YUoMyvXbFzvVbS3CFcnM9rGDx5
 
 console.log(path);
 console.log(address);
@@ -87,7 +87,7 @@ console.log(address);
 console.log(sapphire.checkAddress(address));
 
 // m/44'/832'/0'/1/0 Change address on mobile wallet for account 0 on Sapphire and index 0
-({ path, address } = sapphire.deriveFromAccount(account.xpub, Sapphire.ChangeType.INTERNAL, 0)); // SSdwtuwwHx4ewkBV7MKKoxE9ExdBhfkJGz
+({ path, address } = sapphire.deriveFromAccount(account.xpub, ChangeType.INTERNAL, 0)); // SSdwtuwwHx4ewkBV7MKKoxE9ExdBhfkJGz
 
 console.log(path);
 console.log(address);
@@ -104,7 +104,7 @@ account = kyanite.getWalletAccountXPub(masterPrivKey, 0);
 console.log(account);
 
 // m/44'/834'/0'/0/0 Receiving address on mobile wallet for account 0 on Kyanite and index 0
-({ path, address } = kyanite.deriveFromAccount(account.xpub, Kyanite.ChangeType.EXTERNAL, 0)); 
+({ path, address } = kyanite.deriveFromAccount(account.xpub, ChangeType.EXTERNAL, 0)); 
 
 console.log(path);
 console.log(address);
@@ -112,7 +112,7 @@ console.log(address);
 console.log(sapphire.checkAddress(address));
 
 // m/44'/834'/0'/1/0 Change address on mobile wallet for account 0 on Kyanite and index 0
-({ path, address } = kyanite.deriveFromAccount(account.xpub, Kyanite.ChangeType.INTERNAL, 0));
+({ path, address } = kyanite.deriveFromAccount(account.xpub, ChangeType.INTERNAL, 0));
 
 console.log(path);
 console.log(address);

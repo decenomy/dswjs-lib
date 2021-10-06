@@ -1,4 +1,4 @@
-import { DSW } from './dsw.js'
+import { DSW } from './dsw'
 
 /**
  * Bitcoin.
@@ -12,8 +12,8 @@ export class Bitcoin extends DSW {
         return 0x0;
     } 
 
-    constructor(bitcoinjs, bip39) {
-        super(bitcoinjs, bip39, bitcoin.networks.bitcoin);
+    constructor(bitcoinjs: any, bip39: any) {
+        super(bitcoinjs, bip39, bitcoinjs.networks.bitcoin);
     }
 
 }
@@ -30,8 +30,8 @@ export class Bitcoin extends DSW {
         return 0x1;
     } 
 
-    constructor(bitcoinjs, bip39) {
-        super(bitcoinjs, bip39, bitcoin.networks.testnet);
+    constructor(bitcoinjs: any, bip39: any) {
+        super(bitcoinjs, bip39, bitcoinjs.networks.testnet);
     }
 
 }

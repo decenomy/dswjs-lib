@@ -1,18 +1,12 @@
 import { DSW } from './dsw.js'
 
-/**
- * Sapphire.
- *
- * @class Sapphire
- * @extends {DSW}
- */
 export class Sapphire extends DSW {
 
     get COIN_TYPE() {
         return 0x340;
     } 
 
-    constructor(bitcoinjs, bip39) {
+    constructor(bitcoinjs: any, bip39: any) {
         super(bitcoinjs, bip39, {
             messagePrefix: '\x18DarkNet Signed Message:\n',
             bech32: 'bc', // we don't have it, however leave it like in Bitcoin
