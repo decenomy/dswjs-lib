@@ -56,10 +56,16 @@ class DSW {
   recoverWallet(mnemonic) {
     return __awaiter(this, void 0, void 0, function* () {
       let seed = yield this._bip39.mnemonicToSeed(mnemonic);
-      let node = this._bitcoinjs.bip32.fromSeed(seed, this._network);
-      let xprv = node.toBase58(this._network);
-      return { mnemonic, xprv };
+      return Object.assign({ mnemonic }, this.getXPriv(seed));
     });
+  }
+  getXPriv(seed) {
+    if (!Buffer.isBuffer(seed)) {
+      seed = Buffer.from(seed, 'hex');
+    }
+    let node = this._bitcoinjs.bip32.fromSeed(seed, this._network);
+    let xprv = node.toBase58(this._network);
+    return { xprv, seed: seed.toString('hex') };
   }
   // m / purpose' / coin_type' / account'
   getWalletAccountXPub(xprv, account) {

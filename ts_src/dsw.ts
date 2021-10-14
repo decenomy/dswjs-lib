@@ -26,9 +26,16 @@ export class DSW {
 
     async recoverWallet(mnemonic: string) : Promise<any> {
         let seed = await this._bip39.mnemonicToSeed(mnemonic);
+        return { mnemonic, ...this.getXPriv(seed) };
+    }
+
+    getXPriv(seed: string | Buffer) {
+        if (!Buffer.isBuffer(seed)) {
+            seed = Buffer.from(seed, 'hex');
+        }
         let node = this._bitcoinjs.bip32.fromSeed(seed, this._network);
         let xprv = node.toBase58(this._network);
-        return { mnemonic, xprv };
+        return { xprv, seed: seed.toString('hex') };
     }
 
     // m / purpose' / coin_type' / account'
