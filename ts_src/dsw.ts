@@ -54,8 +54,11 @@ export class DSW {
             throw new Error('invalid change type');
         }
         const path = `m/44'/${this.COIN_TYPE}'/${account}'/${change}${mobile ? "" : "'"}/${address_index}${mobile ? "" : "'"}`;
-        const { address } = this._bitcoinjs.payments.p2pkh({ pubkey: this._bitcoinjs.bip32.fromBase58(xprv, this._network).derivePath(path).publicKey, network: this._network });
-        return { path, address };
+        const node = this._bitcoinjs.bip32.fromBase58(xprv, this._network).derivePath(path);
+        const { publicKey } = node;
+        const wif = node.toWIF();
+        const { address } = this._bitcoinjs.payments.p2pkh({ pubkey: publicKey, network: this._network });
+        return { path, address, wif };
     }
 
     // m / purpose' / coin_type' / 0' / ECOMMERCE / address_index

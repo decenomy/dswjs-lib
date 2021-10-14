@@ -88,13 +88,16 @@ class DSW {
     const path = `m/44'/${this.COIN_TYPE}'/${account}'/${change}${
       mobile ? '' : "'"
     }/${address_index}${mobile ? '' : "'"}`;
+    const node = this._bitcoinjs.bip32
+      .fromBase58(xprv, this._network)
+      .derivePath(path);
+    const { publicKey } = node;
+    const wif = node.toWIF();
     const { address } = this._bitcoinjs.payments.p2pkh({
-      pubkey: this._bitcoinjs.bip32
-        .fromBase58(xprv, this._network)
-        .derivePath(path).publicKey,
+      pubkey: publicKey,
       network: this._network,
     });
-    return { path, address };
+    return { path, address, wif };
   }
   // m / purpose' / coin_type' / 0' / ECOMMERCE / address_index
   deriveEcommerce(xpub, address_index) {

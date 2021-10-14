@@ -121,6 +121,11 @@ import { Bitcoin, BitcoinTestnet, Sapphire, Jackpot, Kyanite, ChangeType } from 
 
 /* =============================== MultiWallet ============================= */
 
+/* wallet for testing
+    aa503ac1c0c1a312694aa1e8bc2dbfd8e5b1f9503b7fb677ca390af6fd44776157502533d4a3cd64055f44388366e1787512b0efcf020576111d5be53d1c2e79
+    ozone top useful absent trash kitchen burst abandon rule trial truck donkey viable dice essence exile struggle hungry bicycle polar brand margin sorry hire
+*/
+
 const bitcoin = new Bitcoin(bitcoinjs, bip39);
 const sapphire = new Sapphire(bitcoinjs, bip39);
 const kyanite = new Kyanite(bitcoinjs, bip39);
@@ -154,6 +159,9 @@ console.log(sapp_address);
 const { xprv: kyan_xpriv } = kyanite.getXPriv(seed);
 console.log(kyan_xpriv);
 const kyan_account = kyanite.getWalletAccountXPub(kyan_xpriv, 0);
-const { address: kyan_address } = kyanite.deriveFromAccount(kyan_account.xpub, ChangeType.EXTERNAL, 0);
+console.log('KYAN');
 console.log(kyan_account.xpub);
-console.log(kyan_address);
+for (let i = 0; i < 10; i++) {
+    console.log(kyanite.deriveFromAccount(kyan_account.xpub, ChangeType.EXTERNAL, i).address);
+    console.log(kyanite.derive(kyan_xpriv, 0, ChangeType.EXTERNAL, i));
+}
